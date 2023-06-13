@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 
 // Serve the static index.html file
-// app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 // Middleware for parsing JSON payloads
 app.use(express.json());
 

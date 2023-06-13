@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="./css/json-viewer.css">
+    <script src="./js/json-viewer.js"></script>
 </head>
+
 <body>
-    
+    <p>submission data</p>
+    <code id="submission-data"></code>
+    <button id="refresh-data">Load Submission Data</button>
 </body>
+<script>
+    const submissionData = document.getElementById('submission-data');
+    const refreshData = document.getElementById('refresh-data');
+
+    refreshData.addEventListener('click', getData)
+
+    function getData() {
+        submissionData.innerHTML = null;
+        const link = window.location.href;
+        fetch(`${link}api/getSubmissions`)
+            .then(response => response.json())
+            .then(data => {
+                let jsonViewer = new JSONViewer();
+                submissionData.appendChild(jsonViewer.getContainer());
+
+                jsonViewer.showJSON(data);
+            });
+    }
+</script>
+
 </html>
