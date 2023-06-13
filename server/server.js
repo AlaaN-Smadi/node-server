@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
+const cors = require("cors");
 
 const app = express();
 
+// App Level MW
+app.use(cors({ origin: '*' }));
 // Serve the static index.html file
 app.use(express.static(path.join(__dirname, '../public')));
 // Middleware for parsing JSON payloads
