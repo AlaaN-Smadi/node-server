@@ -20,7 +20,7 @@ let submissionsCount = 0;
 console.log("setupApiRoutes");
 app.get('/api/getSubmissions', async (req, res) => {
     try {
-        res.json(submissions, submissionsCount);
+        res.json({ submissions, submissionsCount });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error occurred while sending data' });
